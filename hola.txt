@@ -1,0 +1,14 @@
+            if "'" in data[num+2]:
+                goal1 = data[num+2] if "'" in data[num+2] else 'No Info'
+                match2 = data[num+2] if "'" not in data[num+2] else data[num+3]
+                goal2 = data[num+4] if "'" in data[num+4] else 'No Info'
+
+                aux = {f'Matchday {numMatchday}' : {'date':data[num], 'match1':data[num+1],'goalscorers1' : goal1, 'match2':match2, 'goalscorers2' : goal2}}
+                if goal1 != 'No Info': num += 1
+                if goal2 != 'No Info': num += 1
+            else:
+                
+                aux = {f'Matchday {numMatchday}' : {'date':data[num], 'match1':data[num+1], 'match2':data[num+2]}}
+            matchs[1].update(aux)
+            numMatchday += 1
+            num += 3
