@@ -16,13 +16,13 @@ def create_dir(target):
 
 def load_data(filepath):
     try:
-        with open(filepath, 'r') as f:
-            return json.load(f,ensure_ascii=False)
+        with open(filepath,'r') as f:
+            return json.load(f)
     except:
         return {}
 
 def save_data(filepath, data):
-    with open(filepath, 'w',encoding='utf-8') as f:
+    with open(filepath,'w',encoding='utf-8') as f:
         json.dumps(data)
         json.dump(data, f, indent=6,ensure_ascii=False)    
 
@@ -51,7 +51,7 @@ def get_match_results(data):
         number = iter(range(1,3))
         goalscorer = iter(range(1,3))
         if data[num].startswith('Group'):
-            groupmatch[matchs[0]] = matchs[1]
+            groupmatch[matchs[0].replace(':','')] = matchs[1]
             matchs.clear()
             matchs.extend([data[num],{}])
             num += 1
@@ -62,7 +62,7 @@ def get_match_results(data):
                 if "'" in i:
                     partidos.update({f'goalscorers{next(goalscorer)}' : i})
                 elif re.match('^\[(Wed|Tue) [a-zA-Z/]{3}/[0-9]{1,2}\]$',i) != None:
-                    
+
                     ''' break the loop if match2 in partidos
                         date2 into dict if len(partidos) < 4 and goalscorers1 in partidos or match1
                         date into dict in any case where the other two doesnt fulfill the conditional
@@ -86,7 +86,8 @@ def get_match_results(data):
     groupmatch[matchs[0]] = matchs[1]
     return groupmatch
 
-if __name__ == '__main__':
+def main():
+    print('Execution of app-json')
     cwd = os.getcwd()
     source_path = os.path.join(cwd, 'europe-champions-league') # ..\api-python\data\europe-champions-league
     target_path = os.path.join(cwd, 'europe-champions-league-json') #  ..\api-python\data\europe-champions-league-json
@@ -126,3 +127,8 @@ if __name__ == '__main__':
 
                     save_data(save_path,jsn)
         break
+
+    print('End of script')
+
+if __name__ == '__main__':
+    main()

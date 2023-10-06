@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from app import main
 
 app = Flask(__name__)
 
@@ -6,8 +7,9 @@ app = Flask(__name__)
 def index():
     return 'Home'
 
-from . import api
-app.register_blueprint(api.bp)
+from api import bp
+app.register_blueprint(bp)
 
 if __name__ == '__main__':
-    app.debug()
+    main()
+    app.run(debug=True)
