@@ -62,12 +62,18 @@ def get_match_results(data):
                 if "'" in i:
                     partidos.update({f'goalscorers{next(goalscorer)}' : i})
                 elif re.match('^\[(Wed|Tue) [a-zA-Z/]{3}/[0-9]{1,2}\]$',i) != None:
-                    if 'goalscorers1' in list(partidos.keys()) and len(partidos) == 3:
-                        partidos.update({'date2':i})
-                    elif len(partidos) >= 3:
+                    
+                    ''' break the loop if match2 in partidos
+                        date2 into dict if len(partidos) < 4 and goalscorers1 in partidos or match1
+                        date into dict in any case where the other two doesnt fulfill the conditional
+                    '''
+
+                    if 'match2' not in partidos and len(partidos) >= 4 or 'goalscorers1' not in partidos and 'match1' not in partidos:
+                        partidos.update({'date' : i})
+                    elif 'match2' in partidos:
                         break
                     else:
-                        partidos.update({'date' : i})
+                        partidos.update({'date2' : i})
                 elif i.startswith('Group'):
                     break
                 else:
