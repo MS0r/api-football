@@ -1,7 +1,6 @@
 import json
 import os
 import re
-import time
 
 def load_txt_data(filepath):
     try: 
@@ -15,16 +14,13 @@ def create_dir(target):
         os.mkdir(target)
 
 def load_data(filepath):
-    try:
-        with open(filepath,'r') as f:
-            return json.load(f)
-    except:
-        return {}
+    with open(filepath,'r',encoding='utf-8') as f:
+        return json.load(f)
 
 def save_data(filepath, data):
     with open(filepath,'w',encoding='utf-8') as f:
         json.dumps(data)
-        json.dump(data, f, indent=6,ensure_ascii=False)    
+        json.dump(data, f,ensure_ascii=False)    
 
 def get_groups(gro):
     groupsJSON = {}
