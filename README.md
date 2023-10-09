@@ -1,25 +1,63 @@
-#Hello, this is an api based on openfootball's database, specifically the champions league database from 2011 to 2023, but this api wil only cover the group stage season included from 2012-13 to 2019-20 because 2011-12 and 2022-23 dont have group stage information
+## Hello, this is an api based on openfootball's database, specifically the champions league database from 2011 to 2023, but this api wil only cover the group stage season included from 2012-13 to 2019-20 because 2011-12 and 2022-23 dont have group stage information
 
-##API Information:
+### API Information:
 
-###variables:
+#### variables:
 - temp = 2012-13, 2013-14, 2014-15, 2015-16, 2016-17, 2017-18, 2018-19, 2019-20
 - matchday = 1,2,3,4,5,6
 - group = A, B, C, D, E, F, G, H
 
+#### URL
 
-- /"temp"/teams : temp is used to indicate the champions league season, use this to get all the 32 teams that compose the group stage
-- /"temp"/groups : get all the groups formed
-- /"temp"/matchdays: get all the dates when matchs would be played
-- /"temp"/results/"matchday": get all the result from a specific matchday
-- /"temp"/results/ : get all results
-- /"temp"/"group"/group: group to indicate what group do you want to get information, get teams of the group
-- /"temp"/"group"/results: get all the results from the specify group
+```plain
+[GET] /<temp>/teams
+```
+Get all the 32 teams that compose the group stage
+```plain
+[GET] /<temp>/groups
+```
+Get all the groups formed
+```plain
+[GET] /<temp>/matchdays
+```
+Get all the dates when matchs would be played
+```plain
+[GET] /<temp>/results/<matchday>
+```
+Get all the result from a specific matchday
+```plain
+[GET] /<temp>/results
+```
+Get all results
+```plain
+[GET] /<temp>/<group>/group
+```
+Get teams of the group
+```plain
+[GET] /<temp>/<group>/results
+```
+Get all the results from the specify group
 
-- queries for /"temp"/results/:
-    - goals = minimum number of goals made in the game
-    - team = team who has played the match either local or away
-    - stadium = stadium where the game has been played
-    - day = either day of the week, month or specific day
+#### queries for /"temp"/results/
+```plain
+[GET] /<temp>/results?goals=2
+```
+minimum number of goals made in the game
+```plain
+[GET] /<temp>/results?team=Arsenal
+```
+team who has played the match either local or away
+```plain
+[GET] /<temp>/results?stadium=Bernabeu
+```
+stadium where the game has been played
+```plain
+[GET] /<temp>/results?day=Tue
+
+[GET] /<temp>/results?day=Sep
+
+[GET] /<temp>/results?day=16
+```
+either day of the week, month or specific day
 
 
