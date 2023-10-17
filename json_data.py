@@ -14,12 +14,14 @@ def create_dir(target):
         os.mkdir(target)
 
 def load_data(filepath):
-    with open(filepath,'r',encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        with open(filepath,'r',encoding='utf-8') as f:
+            return json.load(f)
+    except:
+        return {}
 
 def save_data(filepath, data):
     with open(filepath,'w',encoding='utf-8') as f:
-        json.dumps(data)
         json.dump(data, f,ensure_ascii=False)    
 
 def get_groups(gro):
@@ -85,8 +87,11 @@ def get_match_results(data):
 def main():
     print('Execution of app-json')
     cwd = os.getcwd()
-    source_path = os.path.join(cwd, 'europe-champions-league') # ..\api-python\data\europe-champions-league
-    target_path = os.path.join(cwd, 'europe-champions-league-json') #  ..\api-python\data\europe-champions-league-json
+    source_path = os.path.join(cwd, 'europe-champions-league') # ..\api-python\europe-champions-league
+    data_path = os.path.join(cwd, 'data') #  ..\api-python\data
+    target_path = os.path.join(data_path,'europe-champions-league-json')
+    
+    create_dir(data_path)
     create_dir(target_path)
 
     for root, dirs, files in os.walk(source_path):
