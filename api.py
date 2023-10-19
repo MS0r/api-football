@@ -76,6 +76,10 @@ def get_matchs_results(temp):
     
 @bp.route('/<temp>/results/<matchday>')
 def get_matchday_results(temp,matchday):
+    
+    if not matchday.isnumeric() and int(matchday) not in list(range(1,7)):
+        return jsonify({"message" : "Bad request"}), 400
+    
     matchs = data[temp]['Matchs']
     response = {}
 
@@ -103,8 +107,19 @@ def get_group(temp,group):
 
 @bp.route('/<temp>/<group>/results')
 def get_group_results(temp,group):
-    response = data[temp]['Matchs'][f'Group {group.upper()}']
-    return jsonify(response)
+    response = {}
+    response[f'Group {group.upper()}'] = data[temp]['Matchs'][f'Group {group.upper()}']
+
+    matchgoals = request.args.get('goals')
+    team = request.args.get('team')
+    stadium = request.args.get('stadium')
+    day = request.args.get('day')
+    queries = [matchgoals, team, stadium, day]
+    
+    if queries.count(None) != 4:
+        return jsonify(querieshandler(response,queries))
+    else:
+        return jsonify(response)
 
 
 @bp.route('/users')
