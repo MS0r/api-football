@@ -22,11 +22,12 @@ after you register in the api you have to get the token from your user
 using the same json schema from /auth/register, from that you will get your token as
 ```json
 {
-    "Success" : True,
+    "Success" : "True",
      "token" : "<your_token>"
 }
 ```
-therefore, before any requests you are going to do to the api, you must put on your request headers: Authorization =  bearer "your_token"
+therefore, before any requests you are going to do to the api, you must put on your request headers:
+Authorization =  bearer "your_token"
 
 #### variables:
 - temp = 2012-13, 2013-14, 2014-15, 2015-16, 2016-17, 2017-18, 2018-19, 2019-20
