@@ -2,13 +2,42 @@
 
 ### API Information:
 
+#### Authentication
+
+First of all you have to get a bearer token, to do that, you have to register using
+```
+[POST] /auth/register
+```
+and request body
+```json
+{
+    "username" : "<your_username>",
+    "password" : "<your_password>"
+}
+```
+after you register in the api you have to get the token from your user
+```plain
+[POST] /auth/login
+```
+using the same json schema from /auth/register, from that you will get your token as
+```json
+{
+    "Success" : True,
+     "token" : "<your_token>"
+}
+```
+therefore, before any requests you are going to do to the api, you must put on your request headers: Authorization =  bearer "your_token"
+
 #### variables:
 - temp = 2012-13, 2013-14, 2014-15, 2015-16, 2016-17, 2017-18, 2018-19, 2019-20
 - matchday = 1,2,3,4,5,6
 - group = A, B, C, D, E, F, G, H
 
 #### URL
-
+```plain
+http://{host:port}/api/v1
+```
+All requests to the api with the url prefix
 ```plain
 [GET] /<temp>/teams
 ```
@@ -38,7 +67,7 @@ Get teams of the group
 ```
 Get all the results from the specify group
 
-#### queries for /"temp"/results/
+#### parameters for results
 ```plain
 [GET] /<temp>/results?goals=2
 ```
