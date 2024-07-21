@@ -1,4 +1,4 @@
-## Hello, this is an api based on openfootball's database, specifically the champions league database from 2011 to 2023, but this api wil only cover the group stage season included from 2012-13 to 2019-20 because 2011-12 and 2022-23 dont have group stage information
+### This is an api based on openfootball's database, specifically the champions league database from 2011 to 2023, but this api wil only cover the group stage season included from 2012-13 to 2019-20 because 2011-12 and 2022-23 dont have group stage information
 
 ### API Information:
 
